@@ -1,4 +1,4 @@
-import { type AccountModel } from '@/domain/model/account-model'
+import type { AccountModel } from '@/domain/model/account-model'
 
 export type AuthenticationParams = {
   email: string
