@@ -6,8 +6,7 @@
     },
     "extends": [
       "standard-with-typescript",
-      "plugin:react/recommended",
-      "plugin:react/jsx-runtime"
+      "plugin:react/recommended"
       // "plugin:cypress/recommended"
     ],
     "env": {
@@ -33,6 +32,6 @@
       "no-redeclare": "off",
       "import/export": "off",
       "react/jsx-uses-react": "error",
-      "react/jsx-uses-vars": "error",
+      "react/jsx-uses-vars": "error"
     }
   }
