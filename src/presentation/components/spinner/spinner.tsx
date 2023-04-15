@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Styles from './spinner-style.scss'
 
 type Props = { className: string }
@@ -14,4 +14,4 @@ const Spinner: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default Spinner
+export default memo(Spinner)
