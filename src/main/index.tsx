@@ -1,11 +1,10 @@
 import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
-
-import { Login } from '@/presentation/pages'
+import { Router } from '@/presentation/components'
 
 ReactDOM.render(
   <StrictMode>
-    <Login />
+    <Router />
   </StrictMode>,
   document.getElementById('main')
 )
