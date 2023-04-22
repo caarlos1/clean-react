@@ -33,6 +33,7 @@
       "import/export": "off",
       "react/jsx-uses-react": "error",
       "react/jsx-uses-vars": "error",
-      "react/prop-types": 1
+      "react/prop-types": 1,
+      "@typescript-eslint/no-misused-promises": 1
     }
   }
