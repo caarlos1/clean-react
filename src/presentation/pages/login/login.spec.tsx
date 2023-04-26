@@ -125,11 +125,13 @@ describe('Login Component', () => {
     expect(authenticationSpy.params).toEqual({ email, password })
   })
 
-  test('Should call Authentication only once', () => {
-    const { sut, authenticationSpy } = makeSut()
+  test('Should not call Authentication if form is invalid', () => {
+    const validationError = faker.random.words()
+    const { sut, authenticationSpy } = makeSut({ validationError })
 
-    simulateValidSubmit(sut)
-    simulateValidSubmit(sut)
-    expect(authenticationSpy.callsCount).toBe(1)
+    populateEmailField(sut)
+
+    fireEvent.submit(sut.getByTestId('form'))
+    expect(authenticationSpy.callsCount).toBe(0)
   })
 })
