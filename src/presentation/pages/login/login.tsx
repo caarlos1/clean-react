@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
 import type { Validation } from '@/presentation/protocols/validation'
 import type { Authentication } from '@/domain/usecases'
 
@@ -55,7 +57,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
           <button data-testid="submit" className={Styles.submit} disabled={!!state.emailError || !!state.passwordError}>
             Entrar
           </button>
-          <span className={Styles.link}>Criar conta</span>
+          <Link data-testid="signup" to="/signup" className={Styles.link}>Criar conta</Link>
           <FormStatus />
         </form>
       </Context.Provider>
