@@ -4,11 +4,18 @@ import axios from 'axios'
 
 export class AxiosHttpClient implements HttpPostClient<any, any> {
   async post(params: HttpPostParams<any>): Promise<HttpResponse<any>> {
-    const httpResult = await axios.post(params.url, params.body)
+    try {
+      const httpResult = await axios.post(params.url, params.body)
 
-    return {
-      statusCode: httpResult.status,
-      body: httpResult.data
+      return {
+        statusCode: httpResult.status,
+        body: httpResult.data
+      }
+    } catch (error) {
+      return {
+        statusCode: error.response.status,
+        body: error.response.data
+      }
     }
   }
 }
