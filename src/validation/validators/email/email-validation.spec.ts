@@ -7,7 +7,7 @@ const makeSut = (): EmailValidation => new EmailValidation(faker.database.column
 describe('EmailValidation', () => {
   test('Should return error if field is email is invalid', () => {
     const sut = makeSut()
-    const error = sut.validate(faker.random.word())
+    const error = sut.validate(faker.lorem.word())
     expect(error).toEqual(new InvalidFieldError())
   })
 

@@ -8,7 +8,7 @@ type MockHttpResponse = {
 
 export const mockHttpResponse = (): MockHttpResponse => ({
   data: faker.science.chemicalElement(),
-  status: faker.random.numeric()
+  status: faker.string.numeric()
 })
 
 export const mockAxios = (): jest.Mocked<typeof axios> => {

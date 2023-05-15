@@ -96,7 +96,7 @@ describe('Login Component', () => {
   afterEach(cleanup)
 
   test('Should start with initial state', () => {
-    const validationError = faker.random.words()
+    const validationError = faker.lorem.word()
     const { sut } = makeSut({ validationError })
 
     testErrorWrapChildCount(sut)
@@ -106,14 +106,14 @@ describe('Login Component', () => {
   })
 
   test('Should show email error if Validation fails', () => {
-    const validationError = faker.random.words()
+    const validationError = faker.lorem.word()
     const { sut } = makeSut({ validationError })
     populateEmailField(sut)
     testStatusForField(sut, 'email', validationError)
   })
 
   test('Should show password error if Validation fails', () => {
-    const validationError = faker.random.words()
+    const validationError = faker.lorem.word()
     const { sut } = makeSut({ validationError })
     populatePasswordField(sut)
     testStatusForField(sut, 'password', validationError)
@@ -155,7 +155,7 @@ describe('Login Component', () => {
   })
 
   test('Should not call Authentication if form is invalid', () => {
-    const validationError = faker.random.words()
+    const validationError = faker.lorem.word()
     const { sut, authenticationSpy } = makeSut({ validationError })
 
     populateEmailField(sut)
