@@ -1,4 +1,5 @@
 const path = require('path')
+const { EnvironmentPlugin } = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
@@ -41,7 +42,7 @@ module.exports = {
     static: './public',
     historyApiFallback: true,
     devMiddleware: {
-      writeToDisk: true,
+      writeToDisk: true
     }
   },
   // Importações externas (link html)
@@ -49,5 +50,9 @@ module.exports = {
     react: 'React',
     'react-dom': 'ReactDOM'
   },
-  plugins: [new CleanWebpackPlugin()]
+  plugins: [new CleanWebpackPlugin(), 
+    new EnvironmentPlugin({
+      API_URL: 'http://localhost:5050/api'
+    })
+  ]
 }
