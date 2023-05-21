@@ -22,11 +22,12 @@ type SutParams = {
 
 const history = createMemoryHistory({ initialEntries: ['/login'] })
 const makeSut = (params?: SutParams): SutTypes => {
-  const saveAccessTokenMock = new SaveAccessTokenMock()
   const validationStub = new ValidationStub()
   validationStub.errorMessage = params?.validationError || ''
 
+  const saveAccessTokenMock = new SaveAccessTokenMock()
   const authenticationSpy = new AuthenticationSpy()
+
   const sut = render(
     <Router location="/" navigator={history}>
       <Login validation={validationStub} authentication={authenticationSpy} saveAccessToken={saveAccessTokenMock} />
@@ -180,6 +181,20 @@ describe('Login Component', () => {
 
     expect(saveAccessTokenMock.accessToken).toBe(authenticationSpy.account.accessToken)
     expect(history.location.pathname).toBe('/')
+  })
+
+  test('Should present error if SaveAccessToken fails', async () => {
+    const { sut, saveAccessTokenMock } = makeSut()
+    const error = new InvalidCredentialsError()
+
+    jest.spyOn(saveAccessTokenMock, 'save').mockReturnValueOnce(Promise.reject(error))
+
+    const formWrap = sut.getByTestId('error-wrap')
+    await simulateValidSubmit(sut)
+    await waitFor(() => formWrap)
+
+    testElementText(sut, 'main-error', error.message)
+    testErrorWrapChildCount(sut, 1)
   })
 
   test('Should go to signup page', async () => {
